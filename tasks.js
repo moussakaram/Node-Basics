@@ -18,6 +18,7 @@ function startApp(name){
 }
 
 
+
 /**
  * Decides what to do depending on the data that was received
  * This function receives the input sent by the user.
