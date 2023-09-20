@@ -43,10 +43,8 @@ function onDataReceived(text) {
   else if(mmm === 'hello'){
     hello(text);
   }
-  else if(text === 'help\n'){
-    console.log('quit')
-    console.log('exit')
-    console.log('hello')
+  else if(mmm === 'help'){
+    help(text);
   }
   else{
     unknownCommand(text);
@@ -92,10 +90,9 @@ function quit(){
  * the possible commands
  */
 
-function help() {
-  console.log('quit')
-  console.log('exit')
-  console.log('hello')
+function help(text) {
+  text=text.slice(0,(text.length-1))
+  console.log(text +' quit! \n '+text+"exit! \n"+text+"hello \n")
 }
 
 // The following line starts the application
