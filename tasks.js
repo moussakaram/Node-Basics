@@ -46,6 +46,11 @@ function onDataReceived(text) {
   else if(mmm === 'help'){
     help(text);
   }
+  else if(mmm === 'list'){
+    list();
+
+
+  }
   else{
     unknownCommand(text);
   }
@@ -94,6 +99,25 @@ function help(text) {
   text=text.slice(0,(text.length-1))
   console.log(text +' quit! \n '+text+"exit! \n"+text+"hello \n")
 }
+
+/**
+ * Says list
+ *
+ * @returns {void}
+ */
+
+const Array1=["buy bread", "do the exercises"];
+function list(){
+Array1.map((Array1,index)=>{
+  console.log(index + 1 + " - [ ] " + Array1);
+
+
+});
+  
+
+  
+ }
+
 
 // The following line starts the application
 startApp("Moussa karam")
