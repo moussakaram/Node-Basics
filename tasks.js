@@ -50,9 +50,11 @@ function onDataReceived(text) {
     list();
   }else if (mmm === 'add') {
     add(text);
+
   }else if (mmm === 'remove') {
-    add(text);
-  
+    remove(text);
+  }else if (mmm === 'edit') {
+    edit(text);
   }else{
     unknownCommand(text);
   }
@@ -99,7 +101,7 @@ function quit(){
 
 function help(text) {
   text=text.slice(0,(text.length-1))
-  console.log(text +' quit! \n '+text+"exit! \n"+text+"hello \n"+"add \n"+text+"remove \n")
+  console.log(text +' quit! \n'+text+" exit! \n"+text+" hello \n"+text+" add \n"+text+" remove \n")
 }
 
 /**
@@ -120,46 +122,63 @@ Array1.map((Array1,index)=>{
  
 //fonction to add to list
   function add(text) {
+  //variable that slice the first 4 char from the string 
     let addTask = text.slice(4).trim();
-  
-    if (addTask === '') {
+  // if to return error if the user enter '' or 'add'
+    if (addTask === ''||addTask ==="add") {
       console.log('Error');
       return;
-    }
-  
+    }else {
+  // push the task into array 
     Array1.push(addTask);
-    console.log(`Task "${addTask}" added successfully!`);
+    console.log(addTask);
   }
+}
 // function to remove from list
 function remove(text) {
-  const index1 = text.trim().split(" ")[1] || Array1.length; 
+  let removeRow = text.trim().split(" ");
 
-  if (indexToRemove > Array1.length || index1 < 1) {
-    console.log(`Error: Task number ${index1} does not exist!`);
+  //using .pop function to remove the row from the array 
+  if (removeRow.length === 1) {
+    Array1.pop();
+    console.log('the last task was removed ');
+    return;
+  }
+
+  // to remove that specific task
+  let indexToRemove = parseInt(removeRow[1]);
+
+  if (indexToRemove <= 0 || indexToRemove > Array1.length) {
+    console.log(`Error ${indexToRemove}`);
     return;
   }
 
   Array1.splice(indexToRemove - 1, 1);
-  console.log(`${index1} Task at position removed successfully!`);
+  console.log(`${indexToRemove} removed successfully!`);
 }
-function edit(text) {
-  const parts = text.trim().split(" ");
-  const description = parts.slice(2).join(" ") || parts[1];
 
-  if (parts.length === 1) {
-    console.log('Error: No task information provided for editing!');
+//edit function 
+function edit(text) {
+
+  // declare two variables result and final result
+  //result take the input from user and trim it to remove the spaces between
+  const result = text.trim().split(" ");
+  const finalResult = result.slice(2).join(" ") || result[1];
+
+  if (result.length === 1) {
+    console.log('Error');
     return;
   }
 
-  const index1 = parts[1] ? parseInt(parts[1]) : Array1.length;
+  const index1 = result[1] ? parseInt(result[1]) : Array1.length;
   
   if (index1 > Array1.length || index1 < 1) {
-    console.log(`Error: Task number ${index1} does not exist!`);
+    console.log(`${index1} does not exist!`);
     return;
   }
 
-  Array1[index1 - 1] = description
-  console.log(`Task at position ${index1} updated to: "${description}"`);
+  Array1[index1 - 1] = finalResult
+  console.log(`${index1} updated to: "${finalResult}"`);
 }
 
   
