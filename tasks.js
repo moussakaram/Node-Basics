@@ -96,7 +96,7 @@ function quit(){
  * command, "help", that lists all 
  * the possible commands
  */
-//help function return the name of all the commands
+
 function help(text) {
   text=text.slice(0,(text.length-1))
   console.log(text +' quit! \n '+text+"exit! \n"+text+"hello \n"+"add \n"+text+"remove \n")
@@ -131,15 +131,37 @@ Array1.map((Array1,index)=>{
     console.log(`Task "${addTask}" added successfully!`);
   }
 // function to remove from list
-  function remove(text) {
-    let parts = text.trim().split(" ");
-  
-    if (parts.length === 1) {
-      Array1.pop();
-      return console.log('The last task was removed ');
-    }
-  
+function remove(text) {
+  const index1 = text.trim().split(" ")[1] || Array1.length; 
+
+  if (indexToRemove > Array1.length || index1 < 1) {
+    console.log(`Error: Task number ${index1} does not exist!`);
+    return;
   }
+
+  Array1.splice(indexToRemove - 1, 1);
+  console.log(`${index1} Task at position removed successfully!`);
+}
+function edit(text) {
+  const parts = text.trim().split(" ");
+  const description = parts.slice(2).join(" ") || parts[1];
+
+  if (parts.length === 1) {
+    console.log('Error: No task information provided for editing!');
+    return;
+  }
+
+  const index1 = parts[1] ? parseInt(parts[1]) : Array1.length;
+  
+  if (index1 > Array1.length || index1 < 1) {
+    console.log(`Error: Task number ${index1} does not exist!`);
+    return;
+  }
+
+  Array1[index1 - 1] = description
+  console.log(`Task at position ${index1} updated to: "${description}"`);
+}
+
   
  
 
