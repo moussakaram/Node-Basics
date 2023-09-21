@@ -48,10 +48,9 @@ function onDataReceived(text) {
   }
   else if(mmm === 'list'){
     list();
-
-
-  }
-  else{
+  }else if (mmm === 'add') {
+    add(text);
+  }else{
     unknownCommand(text);
   }
 }
@@ -105,18 +104,32 @@ function help(text) {
  *
  * @returns {void}
  */
-
+// array1 variable 
 const Array1=["buy bread", "do the exercises"];
+//fonction to create list 
 function list(){
 Array1.map((Array1,index)=>{
+  //index+1 : 0+1 =1 
   console.log(index + 1 + " - [ ] " + Array1);
-
-
 });
-  
 
-  
  }
+ 
+//fonction to add to list
+  function add(text) {
+    // Remove the command part 'add' and trim the spaces
+    let addTask = text.slice(4).trim();
+  
+    if (addTask === '') {
+      console.log('Error: No task available to add');
+      return;
+    }
+  
+    Array1.push(addTask);
+    console.log(`Task "${addTask}" added successfully!`);
+  }
+
+ 
 
 
 // The following line starts the application
