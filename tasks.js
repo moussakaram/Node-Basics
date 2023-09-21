@@ -50,6 +50,9 @@ function onDataReceived(text) {
     list();
   }else if (mmm === 'add') {
     add(text);
+  }else if (mmm === 'remove') {
+    add(text);
+  
   }else{
     unknownCommand(text);
   }
@@ -76,7 +79,7 @@ function unknownCommand(c){
  */
 function hello(text){
   text=text.slice(0,(text.length-1))
-  console.log(text + '!')
+  console.log(text + '!')console.log('The last task was removed ');
 }
 
 
@@ -117,18 +120,27 @@ Array1.map((Array1,index)=>{
  
 //fonction to add to list
   function add(text) {
-    // Remove the command part 'add' and trim the spaces
     let addTask = text.slice(4).trim();
   
     if (addTask === '') {
-      console.log('Error: No task available to add');
+      console.log('Error');
       return;
     }
   
     Array1.push(addTask);
     console.log(`Task "${addTask}" added successfully!`);
   }
-
+// function to remove from list
+  function remove(text) {
+    let parts = text.trim().split(" ");
+  
+    if (parts.length === 1) {
+      Array1.pop();
+      return console.log('The last task was removed ');
+    }
+  
+  }
+  
  
 
 
