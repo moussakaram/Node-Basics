@@ -79,7 +79,7 @@ function unknownCommand(c){
  */
 function hello(text){
   text=text.slice(0,(text.length-1))
-  console.log(text + '!')console.log('The last task was removed ');
+  console.log(text + '!')
 }
 
 
@@ -96,10 +96,10 @@ function quit(){
  * command, "help", that lists all 
  * the possible commands
  */
-
+//help function return the name of all the commands
 function help(text) {
   text=text.slice(0,(text.length-1))
-  console.log(text +' quit! \n '+text+"exit! \n"+text+"hello \n")
+  console.log(text +' quit! \n '+text+"exit! \n"+text+"hello \n"+"add \n"+text+"remove \n")
 }
 
 /**
